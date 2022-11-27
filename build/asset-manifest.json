@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/09-todo-react-group-mnatesan/static/css/main.31d6cfe0.css",
+    "main.js": "/09-todo-react-group-mnatesan/static/js/main.9eda2b7c.js",
+    "index.html": "/09-todo-react-group-mnatesan/index.html",
+    "main.9eda2b7c.js.map": "/09-todo-react-group-mnatesan/static/js/main.9eda2b7c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.9eda2b7c.js"
+  ]
+}

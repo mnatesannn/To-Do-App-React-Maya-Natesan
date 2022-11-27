@@ -1,0 +1,118 @@
+#list {
+    display: table;
+}
+#top{
+    position: relative;
+    left: 30px;
+    padding: 20px 0px 20px 0px;
+}
+#top_alt{
+    display: none;
+}
+#input_box{
+    position: relative;
+    left: 20px;
+    width: 95%;
+}
+input[type=checkbox]:checked + label.strikethrough{
+    text-decoration: line-through;
+  }
+input[type=checkbox]{
+    position: relative;
+    width: auto;
+    margin-top: 8px;
+    margin-right: 20px;
+}
+#add{
+    width: 300px;
+    position: relative;
+    top: 7px;
+}
+* {
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT','Trebuchet MS', sans-serif;
+}
+  
+ul {
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+/* Style the list items */
+ul li {
+width: 98%;
+cursor: pointer;
+position: relative;
+padding: 12px 8px 12px 40px;
+left: -11px;
+background: #eee;
+font-size: 18px;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+background: #ddd;
+}
+
+/* Style the close button */
+.close {
+position: absolute;
+right: 0;
+top: 0;
+padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+background-color: #f44336;
+color: white;
+}
+
+/* Style the header */
+.header {
+background-color: #f44336;
+padding: 30px 40px;
+color: white;
+text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+content: "";
+display: table;
+clear: both;
+}
+
+/* Style the input */
+input {
+margin: 0;
+border: none;
+border-radius: 0;
+width: 75%;
+padding: 10px;
+float: left;
+font-size: 16px;
+}
+
+@media screen and (max-width: 480px) {
+    ul {
+        width: 90vw;
+    }
+    #add{
+        width: 50%;
+    }
+    #top{
+        display:none;
+    }
+    #top_alt{
+        display:grid;
+        padding: 20px 0px 20px 0px;
+        position: relative;
+        left: 30px;
+    }
+}

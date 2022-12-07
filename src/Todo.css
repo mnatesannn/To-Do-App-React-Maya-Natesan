@@ -1,4 +1,4 @@
-#list {
+/* #list {
     display: table;
 }
 
@@ -11,7 +11,7 @@ list-style-type: none;
 }
 
 /* Style the list items */
-ul li {
+/* ul li {
 width: 98%;
 cursor: pointer;
 position: relative;
@@ -19,49 +19,49 @@ padding: 12px 8px 12px 40px;
 left: -11px;
 background: #eee;
 font-size: 18px;
-}
+} */
 
 /* Set all odd list items to a different color (zebra-stripes) */
-ul li:nth-child(odd) {
+/* ul li:nth-child(odd) {
 background: #f9f9f9;
-}
+} */
 
 /* Darker background-color on hover */
-ul li:hover {
+/* ul li:hover {
 background: #ddd;
-}
+} */
 
 /* Style the close button */
-.close {
+/* .close {
 position: absolute;
 right: 0;
 top: 0;
 padding: 12px 16px 12px 16px;
-}
+} */
 
-.close:hover {
-background-color: #f44336;
+/* .close:hover { */
+/* background-color: #f44336;
 color: white;
-}
+} */
 
 /* Style the header */
-.header {
+/* .header {
 background-color: #f44336;
 padding: 30px 40px;
 color: white;
 text-align: center;
-}
+} */
 
 /* Clear floats after the header */
-.header:after {
+/* .header:after {
 content: "";
 display: table;
 clear: both;
-}
+} */
 
 
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
     ul {
         width: 90vw;
     }
@@ -77,4 +77,4 @@ clear: both;
         position: relative;
         left: 30px;
     }
-}
+} */ 

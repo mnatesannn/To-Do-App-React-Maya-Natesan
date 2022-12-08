@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
-import TodoForm from "./TodoForm"
 import {RiCloseCircleLine} from "react-icons/ri"
 import {TiEdit} from "react-icons/ti"
-
+import './Todo.css';
 
 class Todo extends Component {
 
@@ -21,14 +20,19 @@ class Todo extends Component {
 completeTodo(event) {
 
   var key = "903f35-a4485e-c2e25d-aff68d-158cdb";
-  var todoID = event.target.id; //check the html for the class
+  var todoID = event.target.parentNode.id; //check the html for the class
   var self = this;
+
+  console.log("in completeTodo");
+  console.log(todoID);
 
   var data = {
     completed: true
   };
 
   var xhttp2 = new XMLHttpRequest();
+
+
   xhttp2.onreadystatechange = function () {
 
 
@@ -48,7 +52,7 @@ completeTodo(event) {
 
   };
 
-  xhttp2.open("POST", "https://cse204.work/todos", true);
+  xhttp2.open("PUT", "https://cse204.work/todos/"+todoID, true);
   xhttp2.setRequestHeader("Content-type", "application/json");
   xhttp2.setRequestHeader("x-api-key", key);
   xhttp2.send(JSON.stringify(data));
@@ -69,25 +73,15 @@ render() {
     }
 
     return (
-      <div  
-      className={className}
-      id={this.props.id}
-      >  
-      
 
-        <div key={this.props.id} onClick={this.completeTodo}>
-          {this.props.input}
-        </div>
 
-        <div className="icons">
+      <div id={this.props.id} className={className}>
+      <button className="check" onClick={this.completeTodo}>&#10003;</button>
+      <p>{this.props.text}</p>
+      <button className="delete" onClick={this.props.removeTodo}>-</button>
+    </div>
 
-          <RiCloseCircleLine onClick={this.props.deleteTodo} className="delete-icon"/>
-          <button className="check" onClick={this.completeTodo}></button>
-          <TiEdit onClick={this.props.setEdit} className="edit-icon"/>
-        </div>
-
-      </div>
-    );
+      );
 
 
 }

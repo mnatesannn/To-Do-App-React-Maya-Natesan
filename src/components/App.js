@@ -1,6 +1,5 @@
-import './App.css';
 import React, {Component} from 'react'
-import TodoForm from './TodoForm'
+import './App.css';
 import Todo from './Todo'
 import NewTodo from './NewTodo';
 
@@ -15,6 +14,7 @@ class App extends Component {
         this.addTodo = this.addTodo.bind(this);
         this.onChange = this.onChange.bind(this);
         this.removeTodo = this.removeTodo.bind(this);
+        this.sortTodo = this.sortTodo.bind(this);
 
     }
 
@@ -23,11 +23,13 @@ class App extends Component {
         var key = "903f35-a4485e-c2e25d-aff68d-158cdb";
         var self = this;
         event.preventDefault();
+        console.log("in addTodo");
 
         var data = {
             text: this.state.input
         }
 
+        console.log(data.text);
         var displayRequest = new XMLHttpRequest();
 
         displayRequest.onreadystatechange = function () {
@@ -43,6 +45,8 @@ class App extends Component {
                     todos: [...self.state.todos, JSON.parse(this.responseText)]
                 });
 
+                
+
 
             } else if (this.readyState == 4) {
 
@@ -53,7 +57,7 @@ class App extends Component {
 
         };
 
-        displayRequest.open("POST", "https://cse204.work/todos/", true);
+        displayRequest.open("POST", "https://cse204.work/todos", true);
         displayRequest.setRequestHeader("Content-type", "application/json");
         displayRequest.setRequestHeader("x-api-key", key);
         displayRequest.send(JSON.stringify(data));
@@ -71,6 +75,9 @@ class App extends Component {
             input: event.target.value
         });
     }
+
+
+
 
     sortTodo(event) {
       console.log('hi');
@@ -140,20 +147,15 @@ class App extends Component {
     }
 
 
-    onChange(event) {
-        this.setState({
-            input: event.target.value
-        });
-    }
-    
-
-      //remove Todo
+   //remove Todo
    removeTodo(event) {
-
+    console.log("in remove");
     var key = "903f35-a4485e-c2e25d-aff68d-158cdb";
     var deleteRequest = new XMLHttpRequest();
-    var todoID = event.target.id;
+    var todoID = event.target.parentNode.id;
     var self = this;
+
+    console.log("in remove");
 
     deleteRequest.onreadystatechange = function () {
 
@@ -181,19 +183,17 @@ class App extends Component {
     deleteRequest.setRequestHeader("x-api-key", key);
     deleteRequest.send();
 
-    
-
-
   }
 
 
   render() {
-    return ( <
-      section id = "todos" >
+    return ( 
+      <section id = "todos" >
       <NewTodo addTodo = {this.addTodo}
       onChange = {this.onChange}
       updateTodo = {this.updateTodo}
       input = {this.state.input}/>
+      <button onClick = {this.sortTodo} id="submit" className ="sort"> Sort </button>
       {this.state.todos.map((todo) =>
               <Todo key = {todo.id}
               id = {
@@ -205,38 +205,39 @@ class App extends Component {
               text = {
                   todo.text
               }
-              deleteTodo = {
-                  this.deleteTodo
+              removeTodo = {
+                  this.removeTodo
               }
               />
           )
-      } <
-      /section>
+      }
+      </section>
   );
 }
 
 
 componentDidMount() {
+
   const self = this;
-  var key = "2c3b3d-e478d2-aa8356-3934e4-cba12b";
+  var key = "903f35-a4485e-c2e25d-aff68d-158cdb";
 
-    var xhttp = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            //
-            var todos = JSON.parse(xhttp.responseText);
+  xhr.onreadystatechange = function () {
+
+      if (xhr.status == 200) {
+            var todos = JSON.parse(xhr.responseText);
             self.setState({todos: todos});
             console.log(todos);
+        } else {
+          console.log(xhr.status)
         }
     };
 
-    xhttp.open("GET", "https://cse204.work/todos/", true);
+    xhr.open("GET", "https://cse204.work/todos", true);
+    xhr.setRequestHeader("x-api-key", key);
+    xhr.send();
 
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.setRequestHeader("x-api-key", "903f35-a4485e-c2e25d-aff68d-158cdb");
-    xhttp.send();
-    //display todos
 
 }
 }

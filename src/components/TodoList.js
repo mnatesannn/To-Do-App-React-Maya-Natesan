@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import TodoForm from './TodoForm'
+//import TodoForm from './TodoForm'
 import Todo from './Todo'
 import NewTodo from './NewTodo';
 
@@ -14,11 +14,12 @@ class TodoList extends Component {
         this.addTodo = this.addTodo.bind(this);
         this.onChange = this.onChange.bind(this);
         this.removeTodo = this.removeTodo.bind(this);
+        this.sortTodo = this.sortTodo.bind(this);
 
     }
 
     addTodo(event) {
-
+        console.log("in add todo")
         var key = "903f35-a4485e-c2e25d-aff68d-158cdb";
         var self = this;
         event.preventDefault();
@@ -27,6 +28,7 @@ class TodoList extends Component {
             text: this.state.input
         }
 
+        console.log(this.state.input);
         var displayRequest = new XMLHttpRequest();
 
         displayRequest.onreadystatechange = function () {
@@ -34,9 +36,9 @@ class TodoList extends Component {
            // Wait for readyState = 4 & 200 response
            if (this.readyState == 4 && this.status == 200) {
 
-                if(!data.text || /^\s*$/.test(data.text)){
-                    return;
-                }
+                // if(!data.text || /^\s*$/.test(data.text)){
+                //     return;
+                // }
 
                 self.setState({
                     todos: [...self.state.todos, JSON.parse(this.responseText)]
@@ -52,23 +54,29 @@ class TodoList extends Component {
 
         };
 
-        displayRequest.open("DELETE", "https://cse204.work/todos/", true);
+        console.log(data);
+        displayRequest.open("POST", "https://cse204.work/todos", true);
         displayRequest.setRequestHeader("Content-type", "application/json");
         displayRequest.setRequestHeader("x-api-key", key);
         displayRequest.send(JSON.stringify(data));
 
-        this.setState({
-            input: ''
-        });
+        // this.setState({
+        //     input: ''
+        // });
 
 
     }
 
 
     onChange(event) {
+        console.log("onChange");
+
+        console.log(input);
         this.setState({
             input: event.target.value
         });
+        console.log(input);
+
     }
 
 
@@ -127,13 +135,6 @@ class TodoList extends Component {
 
 
     }
-
-
-    onChange(event) {
-        this.setState({
-            input: event.target.value
-        });
-    }
     
 
       //remove Todo
@@ -183,7 +184,7 @@ class TodoList extends Component {
             onChange = {this.onChange}
             updateTodo = {this.updateTodo}
             input = {this.state.input}/>
-      <Todo todos ={this.todos} completeTodo={this.completeTodo} removeTodo={this.removeTodo} updateTodo={this.updateTodo}/>
+            console.log(input);
       {this.state.todos.map((todo) =>
                     <Todo key = {todo.id}
                     id = {

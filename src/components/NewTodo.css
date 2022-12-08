@@ -1,0 +1,45 @@
+#newText {
+    width: 90%;
+    font-size: 20px;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    outline: none;
+    max-width: 75%;
+
+}
+
+#submit {
+    background-color: rgb(128, 0, 128);
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+   
+
+
+
+}
+
+#submit:hover {
+    background-color: lawngreen;
+}
+
+.sort {
+    position: absolute;
+    right: 2%;
+    top: 0%;
+    padding: 16px;
+    border: none;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    outline: none;
+    background: linear-gradient(
+      90deg,
+      rgba(93, 12, 255, 1) 0%,
+      rgba(155, 0, 250, 1) 100%
+    );
+    color: #fff;
+    text-transform: capitalize;
+
+
+}
